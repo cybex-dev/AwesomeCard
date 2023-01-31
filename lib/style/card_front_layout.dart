@@ -69,25 +69,22 @@ class CardFrontLayout {
               ),
               if ((isContactless ?? true) || (trailingIcon != null))
                 Expanded(
-                  child: Align(
-                    alignment: Alignment.centerRight,
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        if(isContactless ?? true)
-                          Image.asset(
-                            'images/contactless_icon.png',
-                            fit: BoxFit.fitHeight,
-                            width: 30.0,
-                            height: 30.0,
-                            color: textColor,
-                            package: 'awesome_card',
-                          ),
-                        SizedBox(width: 4),
-                        if(trailingIcon != null)
-                          trailingIcon!
-                      ],
-                    ),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      if (isContactless ?? true)
+                        Image.asset(
+                          'images/contactless_icon.png',
+                          fit: BoxFit.fitHeight,
+                          width: 30.0,
+                          height: 30.0,
+                          color: textColor,
+                          package: 'awesome_card',
+                        ),
+                      SizedBox(width: 4),
+                      if (trailingIcon != null) trailingIcon!
+                    ],
                   ),
                 ),
             ],
