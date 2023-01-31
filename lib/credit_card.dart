@@ -26,6 +26,7 @@ class CreditCard extends StatefulWidget {
   final double? width;
   final double? height;
   final bool? isContactless;
+  final bool hideExpiryDate;
   final OptionalWidgetBuilder? trailingIconBuilder;
   final OptionalWidgetBuilder? leadingIconBuilder;
 
@@ -61,6 +62,7 @@ class CreditCard extends StatefulWidget {
     this.trailingIconBuilder,
     this.horizontalMargin = 20,
     this.isContactless = true,
+    this.hideExpiryDate = false,
   }) : super(key: key);
 
   @override
@@ -194,6 +196,7 @@ class _CreditCardState extends State<CreditCard>
                   isContactless: widget.isContactless,
                   leadingIcon: widget.leadingIconBuilder?.call(context),
                   trailingIcon: widget.trailingIconBuilder?.call(context),
+                  hideExpiryDate: widget.hideExpiryDate,
                 ).layout1(),
           ],
         ),

@@ -17,6 +17,7 @@ class CardFrontLayout {
   bool? isContactless;
   Widget? leadingIcon;
   Widget? trailingIcon;
+  bool hideExpiryDate;
 
   CardFrontLayout({
     this.bankName = '',
@@ -34,6 +35,7 @@ class CardFrontLayout {
     this.isContactless = true,
     this.leadingIcon,
     this.trailingIcon,
+    this.hideExpiryDate = false,
   });
 
   Widget layout1() {
@@ -110,13 +112,15 @@ class CardFrontLayout {
                           fontSize: 22,
                         ),
                       ),
-                      SizedBox(
-                        height: 15,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
+                      if (!hideExpiryDate)
+                        SizedBox(
+                          height: 15,
+                        ),
+                      if (!hideExpiryDate)
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
                           Text(
                             textExpDate!,
                             style: TextStyle(
