@@ -48,7 +48,7 @@ class CardFrontLayout {
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               if (leadingIcon != null)
                 Padding(
