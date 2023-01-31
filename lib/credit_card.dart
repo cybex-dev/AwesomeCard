@@ -6,6 +6,8 @@ import 'package:awesome_card/style/card_back_layout.dart';
 import 'package:awesome_card/style/card_front_layout.dart';
 import 'package:flutter/material.dart';
 
+typedef OptionalWidgetBuilder = Widget? Function(BuildContext context);
+
 class CreditCard extends StatefulWidget {
   final String? cardNumber;
   final String? cardExpiry;
@@ -24,6 +26,8 @@ class CreditCard extends StatefulWidget {
   final double? width;
   final double? height;
   final bool? isContactless;
+  final OptionalWidgetBuilder? trailingIconBuilder;
+  final OptionalWidgetBuilder? leadingIconBuilder;
 
   final String? textExpDate;
   final String? textName;
@@ -53,6 +57,8 @@ class CreditCard extends StatefulWidget {
     this.textExpiry = 'MM/YY',
     this.textName = 'Card Holder',
     this.mask,
+    this.leadingIconBuilder,
+    this.trailingIconBuilder,
     this.horizontalMargin = 20,
     this.isContactless = true,
   }) : super(key: key);
@@ -186,6 +192,8 @@ class _CreditCardState extends State<CreditCard>
                         cardNumber: widget.cardNumber,
                       ),
                   isContactless: widget.isContactless,
+                  leadingIcon: widget.leadingIconBuilder?.call(context),
+                  trailingIcon: widget.trailingIconBuilder?.call(context),
                 ).layout1(),
           ],
         ),

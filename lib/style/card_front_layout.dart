@@ -15,6 +15,8 @@ class CardFrontLayout {
   String? textExpiry;
   final String mask;
   bool? isContactless;
+  Widget? leadingIcon;
+  Widget? trailingIcon;
 
   CardFrontLayout({
     this.bankName = '',
@@ -30,6 +32,8 @@ class CardFrontLayout {
     this.cardHeight = 0,
     this.textColor,
     this.isContactless = true,
+    this.leadingIcon,
+    this.trailingIcon,
   });
 
   Widget layout1() {
@@ -46,6 +50,11 @@ class CardFrontLayout {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
+              if (leadingIcon != null)
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 4),
+                  child: leadingIcon!,
+                ),
               Container(
                 height: 30,
                 child: Center(
@@ -58,17 +67,26 @@ class CardFrontLayout {
                   ),
                 ),
               ),
-              if(isContactless ?? true)
+              if ((isContactless ?? true) || (trailingIcon != null))
                 Expanded(
                   child: Align(
                     alignment: Alignment.centerRight,
-                    child: Image.asset(
-                      'images/contactless_icon.png',
-                      fit: BoxFit.fitHeight,
-                      width: 30.0,
-                      height: 30.0,
-                      color: textColor,
-                      package: 'awesome_card',
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        if(isContactless ?? true)
+                          Image.asset(
+                            'images/contactless_icon.png',
+                            fit: BoxFit.fitHeight,
+                            width: 30.0,
+                            height: 30.0,
+                            color: textColor,
+                            package: 'awesome_card',
+                          ),
+                        SizedBox(width: 4),
+                        if(trailingIcon != null)
+                          trailingIcon!
+                      ],
                     ),
                   ),
                 ),
